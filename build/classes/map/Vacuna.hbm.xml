@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="modelo.Vacuna" table="vacuna">
+        <id name="id" type="java.lang.Integer" column="id">
+            <generator class="identity" />
+        </id>
+        <property name="nombre" column="nombre" unique="true" />
+        <property name="descripcion" column="descripcion" />
+        <set name="enfermedades" table="enfermedad_vacuna" cascade="all" inverse="false" lazy="false">
+            <key column="id_vacuna" />
+            <many-to-many column="id_enfermedad" class="modelo.Enfermedad" />
+        </set>
+    </class>
+</hibernate-mapping>

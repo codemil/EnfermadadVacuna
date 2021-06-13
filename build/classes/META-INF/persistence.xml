@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="casoPruebaPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>modelo.Historial_1</class>
+    <class>modelo.DosisAplicada</class>
+    <class>modelo.Enfermedad</class>
+    <class>modelo.Dosis</class>
+    <class>modelo.Familiar</class>
+    <class>modelo.Vacuna</class>
+    <class>modelo.Persona_1</class>
+    <class>modelo.Historial</class>
+    <class>modelo.Persona</class>
+    <class>modelo.Vacuna_1</class>
+    <class>modelo.Enfermedad_1</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/casoPrueba"/>
+      <property name="javax.persistence.jdbc.user" value="admin123"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.password" value="admin123"/>
+    </properties>
+  </persistence-unit>
+</persistence>

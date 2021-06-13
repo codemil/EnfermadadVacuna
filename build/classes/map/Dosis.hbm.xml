@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="modelo.Dosis" table="dosis">
+        <id name="id" type="java.lang.Integer" column="id">
+            <generator class="identity" />
+        </id>
+        <property name="valorTiempo" column="valor_tiempo" />
+        <property name="unidadTiempo" column="unidad_tiempo" />
+        <many-to-one name="vacuna" column="id_vacuna" lazy="false"/>
+    </class>
+</hibernate-mapping>

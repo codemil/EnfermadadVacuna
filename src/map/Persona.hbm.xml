@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="modelo.Persona" table="persona">
+		<id name="id" type="java.lang.Integer" column="id">
+		    <generator class="identity" />
+		</id>
+		<property name="documento" column="documento" unique="true" />
+		<property name="tipoDocumento" column="tipo_documento" />
+                <property name="nombres" column="nombres" />
+                <property name="apellidos" column="apellidos" />
+                <property name="fechaNacimiento" column="fecha_nacimiento" />
+                <one-to-one name="historial" class="modelo.Historial" cascade="all" lazy="false"/>
+	</class>
+</hibernate-mapping>
