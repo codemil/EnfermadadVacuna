@@ -32,10 +32,10 @@ public class CasoPrueba {
      */
     public static void main(String[] args) {
         //Creación de registro de vacunación
-        guardarRegistroDeVacunacion();
-//        consultarRegitroVacunacion(202);
+//        guardarRegistroDeVacunacion();
+//        consultarRegitroVacunacion();
 //        actualizarRegistroVacunacion();
-//        eliminarRegistroVacunacion();
+        eliminarRegistroVacunacion();
     }
 
     private static void guardarRegistroDeVacunacion() {
@@ -45,84 +45,84 @@ public class CasoPrueba {
         DosisDao dosisDao = new DosisDao();
         DosisAplicadaDao dosisAplicadaDao = new DosisAplicadaDao();
 
-        //Definición de persona
-        Persona persona = new Persona("1234567890", "C", "pepe", "perez", new Date());
-
-        //Definición de historial
-        Historial historial = new Historial(new Date());
-        //Relación de historial - persona
-        historial.setPersona(persona);
-
-        //Relacion de persona - historial
-        persona.setHistorial(historial);
-
-        //Guardado de persona
-        personaDao.guardar(persona);
-
-        //Definición de vacuna
-        Vacuna vacuna = new Vacuna("nombre vacuna", "descripcion vacuna1");
-
-        //Definición de enfermedad
-        Enfermedad enfermedad = new Enfermedad("Nombre Enfermedad", "Descripción Enfermedad");
-
-        //Relación de vacuna enfermedad
-        vacuna.getEnfermedades().add(enfermedad);
-
-        //Guardado de vacuna
-        vacunaDao.guardar(vacuna);
-
-        //Definición de dosis
-        Dosis dosis = new Dosis(2, "H", vacuna);
-
-        //Guardado de dosis
-        dosisDao.guardar(dosis);
-
-        //Definición de dosis aplicada
-        DosisAplicada dosisAplicada = new DosisAplicada(new Date(), dosis, historial);
-
-        //Guardado de dosis aplicada
-        dosisAplicadaDao.guardar(dosisAplicada);
+        for (int i = 0; i < 2; i++) {
+            //Definición de persona
+            Persona persona = new Persona("123456789 " + i, "C", "pepe", "perez", new Date());
+            //Definición de historial
+            Historial historial = new Historial(new Date());
+            //Relación de historial - persona
+            historial.setPersona(persona);
+            //Relacion de persona - historial
+            persona.setHistorial(historial);
+            //Guardado de persona
+            personaDao.guardar(persona);
+            //Definición de vacuna
+            Vacuna vacuna = new Vacuna("nombre vacuna " + i, "descripcion vacuna1");
+            //Definición de enfermedad
+            Enfermedad enfermedad = new Enfermedad("Nombre Enfermedad + " + i, "Descripción Enfermedad");
+            //Relación de vacuna enfermedad
+            vacuna.getEnfermedades().add(enfermedad);
+            //Guardado de vacuna
+            vacunaDao.guardar(vacuna);
+            //Definición de dosis
+            Dosis dosis = new Dosis(2, "H", vacuna);
+            //Guardado de dosis
+            dosisDao.guardar(dosis);
+            //Definición de dosis aplicada
+            DosisAplicada dosisAplicada = new DosisAplicada(new Date(), dosis, historial);
+            //Guardado de dosis aplicada
+            dosisAplicadaDao.guardar(dosisAplicada);
+        }
     }
 
-    private static void consultarRegitroVacunacion(Integer idPersona) {
+    private static void consultarRegitroVacunacion() {
         PersonaDao personaDao = new PersonaDao();
         VacunaDao vacunaDao = new VacunaDao();
         DosisDao dosisDao = new DosisDao();
         DosisAplicadaDao dosisAplicadaDao = new DosisAplicadaDao();
         EnfermedadDao enfermedadDao = new EnfermedadDao();
 
-        System.out.println("============ Personas ============");
 //        List<Enfermedad> enfermedades = enfermedadDao.obtenerLista();
 //        for (Enfermedad enfermedad : enfermedades) {
+//            System.out.println("======Enfermedad======");
 //            System.out.println(enfermedad);
-//            System.out.println(enfermedad.getVacunas());
+//            System.out.println("======================");
+//            System.out.println("======Vacunas========");
 //            Set<Vacuna> vacunas = enfermedad.getVacunas();
 //            for (Vacuna vacuna : vacunas) {
 //                System.out.println(vacuna);
 //            }
+//            System.out.println("======================");
 //        }
-
 //        List<Dosis> listaDosis = dosisDao.obtenerLista();
 //        for (Dosis dosis : listaDosis) {
+//            System.out.println("======Dosis===========");
 //            System.out.println(dosis);
+//            System.out.println("======Vacuna==========");
 //            Vacuna vacuna = dosis.getVacuna();
 //            System.out.println(vacuna);
+//            System.out.println("======Enfermedad======");
 //            Set<Enfermedad> enfermedades = vacuna.getEnfermedades();
 //            for (Enfermedad enfermedad : enfermedades) {
 //                System.out.println(enfermedad);
 //            }
+//            System.out.println("======================");
 //        }
         List<DosisAplicada> dosisAplicadas = dosisAplicadaDao.obtenerLista();
         for (DosisAplicada dosisAplicada : dosisAplicadas) {
+            System.out.println("======Dosis Aplicada===========");
             System.out.println(dosisAplicada);
+            System.out.println("======Dosis===========");
             Dosis dosis = dosisAplicada.getDosis();
             System.out.println(dosis);
+            System.out.println("======Historial===========");
             Historial historial = dosisAplicada.getHistorial();
             System.out.println(historial);
+            System.out.println("======Persona===========");
             Persona persona = historial.getPersona();
             System.out.println(persona);
+            System.out.println("======================");
         }
-        System.out.println("================================================");
     }
 
     private static void actualizarRegistroVacunacion() {
@@ -133,31 +133,32 @@ public class CasoPrueba {
         EnfermedadDao enfermedadDao = new EnfermedadDao();
         HistorialDao historialDao = new HistorialDao();
 
-        Enfermedad enfermedad = enfermedadDao.obtenerPorId(225);
-        enfermedad.setDescripcion("actualizada");
+        Enfermedad enfermedad = enfermedadDao.obtenerPorId(227);
+        enfermedad.setDescripcion("descripción actualizada");
+        enfermedad.setNombre("Nombre Enfermedad");
         enfermedadDao.actualizar(enfermedad);
 
-        Vacuna vacuna = vacunaDao.obtenerPorId(122);
-        vacuna.setDescripcion("actualizada");
+        Vacuna vacuna = vacunaDao.obtenerPorId(125);
+        vacuna.setDescripcion("descripción actualizada");
         vacunaDao.actualizar(vacuna);
 
-        Dosis dosis = dosisDao.obtenerPorId(5);
-        dosis.setUnidadTiempo("H");
-        Vacuna vacuna1 = vacunaDao.obtenerPorId(122);
+        Dosis dosis = dosisDao.obtenerPorId(7);
+        dosis.setUnidadTiempo("M");
+        Vacuna vacuna1 = vacunaDao.obtenerPorId(126);
         dosis.setVacuna(vacuna1);
         dosisDao.actualizar(dosis);
 
-        DosisAplicada dosisAplicada = dosisAplicadaDao.obtenerPorId(1);
+        DosisAplicada dosisAplicada = dosisAplicadaDao.obtenerPorId(3);
         dosisAplicada.setFechaAplicacion(new Date());
         Historial historial = historialDao.obtenerPorId(202);
         dosisAplicada.setHistorial(historial);
         dosisAplicadaDao.actualizar(dosisAplicada);
 
-        Historial historial1 = historialDao.obtenerPorId(202);
-        historial1.setFechaCreacion(new Date());
-        historialDao.actualizar(historial);
+        Historial historial1 = historialDao.obtenerPorId(206);
+        historial1.setFechaCreacion(new Date(System.currentTimeMillis() + 240000000));
+        historialDao.actualizar(historial1);
 
-        Persona persona = personaDao.obtenerPorId(202);
+        Persona persona = personaDao.obtenerPorId(205);
         persona.setNombres("nombres actualizados");
         personaDao.actualizar(persona);
     }
@@ -167,13 +168,11 @@ public class CasoPrueba {
         VacunaDao vacunaDao = new VacunaDao();
         DosisDao dosisDao = new DosisDao();
         DosisAplicadaDao dosisAplicadaDao = new DosisAplicadaDao();
-        EnfermedadDao enfermedadDao = new EnfermedadDao();
-        HistorialDao historialDao = new HistorialDao();
 
-//        dosisAplicadaDao.eliminar(1);
-//        dosisDao.eliminar(5);
-//           vacunaDao.eliminar(122);
-        personaDao.eliminar(203);
+        dosisAplicadaDao.eliminar(4);
+        dosisDao.eliminar(8);
+        vacunaDao.eliminar(126);
+        personaDao.eliminar(206);
 
     }
 }
